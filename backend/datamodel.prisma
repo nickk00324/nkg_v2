@@ -1,0 +1,19 @@
+type Artist {
+  id: ID! @id
+  name: String!
+  exhibitions: [Exhibition]
+  bio: [String] @scalarList(strategy: RELATION)
+}
+
+type Exhibition {
+  id: ID! @id
+  title: String
+  artist: Artist
+  promoImage: String
+  showImages: [String] @scalarList(strategy: RELATION)
+  thumbnail: String
+  startDate: DateTime!
+  endDate: DateTime!
+  pressRelease: [String] @scalarList(strategy: RELATION)
+  url: String! @unique
+}

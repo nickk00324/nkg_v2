@@ -1,0 +1,21 @@
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+  hello: String
+}
+
+type Query {
+  artists(where: ArtistWhereInput): [Artist]!
+  exhibitions(
+    where: ExhibitionWhereInput
+    orderBy: ExhibitionOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Exhibition]!
+  artist(where: ArtistWhereUniqueInput!): Artist
+  exhibition(where: ExhibitionWhereUniqueInput!): Exhibition
+  getUpcomingExhibitions: Exhibition
+}
