@@ -7,9 +7,17 @@ const CoronaStyles = styled.div`
   height: 100vh;
   margin: 0 auto;
 
+  @media only screen and (max-width: 1265px) {
+    padding-top: 5rem;
+  }
+
   .content {
     width: 90rem;
-    padding: 1rem;
+    padding: 4rem;
+
+    @media only screen and (max-width: 1000px) {
+      width: auto;
+    }
   }
 `;
 const Corona = () => {
