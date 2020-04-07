@@ -2,6 +2,7 @@
 endpoint: https://nkg-production-fd65eff654.herokuapp.com/nkg-prod/prod
 datamodel: datamodel.prisma
 secret: ${env:PRISMA_SECRET}
+
 hooks:
   post-deploy: 
     - graphql get-schema -p prisma
