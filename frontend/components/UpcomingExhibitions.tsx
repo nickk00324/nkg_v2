@@ -4,18 +4,15 @@ import styled from "styled-components";
 import Info from "./Info";
 
 const UPCOMING_EXHIBITIONS_QUERY = gql`
-  query UPCOMING_EXHIBITIONS_QUERY {
-    exhibitions(orderBy: startDate_DESC, first: 2) {
+  query UPCOMING_EXHIBITIONS_QUERY($date: DateTime!) {
+    exhibitions(where: { OR: [{ startDate_gt: $date }, { startDate: null }] }) {
       id
       title
-      startDate
-      endDate
       artist {
         name
-        exhibitions {
-          id
-        }
       }
+      startDate
+      endDate
     }
   }
 `;
@@ -25,7 +22,7 @@ const UpcomingExhibitionStyles = styled.div`
   margin-top: 20rem;
   max-width: 90rem;
   margin-bottom: ${props => props.theme.marginFromFooter};
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 735px) {
     margin-top: 5rem;
   }
 `;
@@ -44,6 +41,7 @@ const UpcomingList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0 2rem;
+  margin-bottom: ${props => props.theme.marginFromFooter};
 
   @media only screen and (max-width: 1200px) {
     grid-gap: 5rem;
@@ -51,10 +49,6 @@ const UpcomingList = styled.ul`
 
   @media only screen and (max-width: 920px) {
     grid-template-columns: 1fr;
-  }
-
-  @media only screen and (max-width: 600px) {
-    display: block;
   }
 
   li {
@@ -73,21 +67,15 @@ const UpcomingList = styled.ul`
 type UpcomingExhibitionsProps = {};
 
 const UpcomingExhibitions = (props: UpcomingExhibitionsProps) => {
-  const isUpcoming = (date: string) => {
-    const today = new Date();
-    const startDate = new Date(date);
-    return today < startDate;
-  };
+  const today = new Date();
   return (
     <UpcomingExhibitionStyles>
-      <Query query={UPCOMING_EXHIBITIONS_QUERY}>
+      <Query query={UPCOMING_EXHIBITIONS_QUERY} variables={{ date: today }}>
         {({ data, loading, error }: any) => {
           if (loading) return <MessageStyles>fetching, hold up</MessageStyles>;
           if (error)
             return <MessageStyles>well, something went wrong :p</MessageStyles>;
-          const upcoming = data.exhibitions
-            .filter((e: any) => isUpcoming(e.startDate))
-            .reverse();
+          const upcoming = data.exhibitions;
           if (upcoming.length === 0) {
             return (
               <MessageStyles>

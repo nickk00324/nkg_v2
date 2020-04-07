@@ -22,13 +22,13 @@ const ArtistsStyles = styled.div`
   display: flex;
   justify-content: center;
   flex: 1;
-  height: 100vh;
   margin-top: 30rem;
+  margin-bottom: 60rem;
 
   @media only screen and (max-width: 665px) {
     margin-top: 10rem;
     height: auto;
-    margin-bottom: ${props => props.theme.marginFromFooter};
+    margin-bottom: 30rem;
   }
   ul {
     list-style: none;

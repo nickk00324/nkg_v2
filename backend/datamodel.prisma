@@ -12,8 +12,8 @@ type Exhibition {
   promoImage: String
   showImages: [String] @scalarList(strategy: RELATION)
   thumbnail: String
-  startDate: DateTime!
-  endDate: DateTime!
+  startDate: DateTime
+  endDate: DateTime
   pressRelease: [String] @scalarList(strategy: RELATION)
   url: String! @unique
 }

@@ -27,6 +27,8 @@ const PastExhibitionsGrid = styled.div`
   border-bottom: ${props => props.theme.border};
   border-left: ${props => props.theme.border};
   margin: 2rem;
+  margin-bottom: 30rem;
+  justify-items: center;
   grid-gap: 2rem;
   width: 75%;
   max-height: 70rem;
@@ -42,7 +44,7 @@ const PastExhibitionsGrid = styled.div`
   @media only screen and (max-width: 615px) {
     grid-template-columns: 1fr;
     min-width: 300px;
-    margin: 2rem auto;
+    margin: 2rem auto 20rem auto;
   }
 
   @media only screen and (max-width: 420px) {
@@ -53,7 +55,7 @@ const PastExhibitionsGrid = styled.div`
 const MessageStyles = styled.p`
   padding: 2rem 0 0 2rem;
   margin-top: 30rem;
-  margin-bottom: 0;
+  margin-bottom: ${props => props.theme.marginFromFooter};
   border-top: ${props => props.theme.border};
   border-left: ${props => props.theme.border};
 `;

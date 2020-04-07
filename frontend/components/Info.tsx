@@ -22,12 +22,13 @@ const Info = (props: InfoProps) => {
   return (
     <InfoStyles>
       <p>{artist}</p>
-      {title ? <p>{title}</p> : <p>coming soon!</p>}
+      {title && <p>{title}</p>}
       {startDate && endDate && (
         <p>
           {formatDate(startDate)} - {formatDate(endDate, true)}
         </p>
       )}
+      {!startDate && <p>COMING SOON</p>}
     </InfoStyles>
   );
 };

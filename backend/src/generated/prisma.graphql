@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/nick-k-9680ae/nkg/dev
-# timestamp: Sat Apr 04 2020 17:28:53 GMT-0700 (Pacific Daylight Time)
+# timestamp: Mon Apr 06 2020 22:56:46 GMT-0700 (Pacific Daylight Time)
 
 type AggregateArtist {
   count: Int!
@@ -253,8 +253,8 @@ type Exhibition implements Node {
   promoImage: String
   showImages: [String!]!
   thumbnail: String
-  startDate: DateTime!
-  endDate: DateTime!
+  startDate: DateTime
+  endDate: DateTime
   pressRelease: [String!]!
   url: String!
 }
@@ -274,8 +274,8 @@ input ExhibitionCreateInput {
   title: String
   promoImage: String
   thumbnail: String
-  startDate: DateTime!
-  endDate: DateTime!
+  startDate: DateTime
+  endDate: DateTime
   url: String!
   showImages: ExhibitionCreateshowImagesInput
   pressRelease: ExhibitionCreatepressReleaseInput
@@ -300,8 +300,8 @@ input ExhibitionCreateWithoutArtistInput {
   title: String
   promoImage: String
   thumbnail: String
-  startDate: DateTime!
-  endDate: DateTime!
+  startDate: DateTime
+  endDate: DateTime
   url: String!
   showImages: ExhibitionCreateshowImagesInput
   pressRelease: ExhibitionCreatepressReleaseInput
@@ -339,8 +339,8 @@ type ExhibitionPreviousValues {
   promoImage: String
   showImages: [String!]!
   thumbnail: String
-  startDate: DateTime!
-  endDate: DateTime!
+  startDate: DateTime
+  endDate: DateTime
   pressRelease: [String!]!
   url: String!
 }

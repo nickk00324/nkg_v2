@@ -27,7 +27,6 @@ export const CURRENT_EXHIBITION_QUERY = gql`
 const ExhibitionsStyles = styled.div`
   display: flex;
   flex-wrap: wrap;
-  height: 100vh;
   border-right: ${props => props.theme.border};
   padding-bottom: ${props => props.theme.marginFromFooter};
 
@@ -147,8 +146,8 @@ const CurrentExhibitionStyles = styled.div`
   flex-wrap: wrap;
   width: 50rem;
   border-bottom: ${props => props.theme.border};
-  margin-bottom: ${props => props.theme.marginFromFooter};
   margin: 5rem 2rem;
+  margin-bottom: 30rem;
 
   @media only screen and (max-width: 620px) {
     width: 30rem;
