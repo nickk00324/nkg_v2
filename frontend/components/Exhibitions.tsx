@@ -192,8 +192,10 @@ const CurrentExhibition = (props: CurrentExhibitionProps) => {
         {({ data, loading, error }: any) => {
           if (loading)
             return <MessageStyles>looking, hold your horses</MessageStyles>;
-          if (error)
+          if (error) {
+            console.log(error);
             return <MessageStyles>well something went wrong</MessageStyles>;
+          }
           const exhibition = data.exhibitions[0];
           return (
             <>
