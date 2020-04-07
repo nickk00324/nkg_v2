@@ -31,7 +31,7 @@ const MessageStyles = styled.p`
   border-top: ${props => props.theme.border};
   padding: 2rem 2rem 0 0;
   border-right: ${props => props.theme.border};
-  margin: 0 2rem ${props => props.theme.marginFromFooter} 2rem;
+  margin: 0 2rem 30rem 2rem;
 `;
 
 const UpcomingList = styled.ul`
