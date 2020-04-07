@@ -62,7 +62,11 @@ class Artist extends React.Component<ArtistProps> {
                 </KeepHeight>
               );
             if (error) return <p>{error.message}</p>;
-            const artist = data.artists[0];
+            // only allow me to show up for the time being :P
+            const artist =
+              data.artists[0].name === "nick kochornswasdi"
+                ? data.artists[0]
+                : null;
             let images: string[] = [];
             if (artist) {
               artist.exhibitions.forEach((e: any) => {

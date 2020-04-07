@@ -22,12 +22,24 @@ const HeaderStyles = styled.div`
   }
 `;
 
+const Circle = styled.div`
+  height: 5rem;
+  width: 5rem;
+  border-radius: 100%;
+  background-color: ${props => props.theme.greenBlue};
+  z-index: -100;
+  position: fixed;
+  top: 1rem;
+  left: 15rem;
+`;
+
 const Header = () => {
   return (
     <HeaderStyles>
       <Link href='/'>
         <a>
           <h1>nick kochornswasdi gallery</h1>
+          <Circle />
         </a>
       </Link>
       <Nav />
