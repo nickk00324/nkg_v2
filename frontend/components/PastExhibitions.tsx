@@ -113,12 +113,15 @@ const ExhibitionCard = (props: ExhibitionCardProps) => {
       <Link href={`/exhibitions/${props.url}`}>
         <a>
           <img src={props.thumbnail} alt={props.title} />
-          <Info
-            artist={props.artist}
-            title={props.title}
-            startDate={props.startDate}
-            endDate={props.endDate}
-          />
+          <div className='info'>
+            <Info
+              artist={props.artist}
+              title={props.title}
+              startDate={props.startDate}
+              endDate={props.endDate}
+              onPastPage={true}
+            />
+          </div>
         </a>
       </Link>
     </ExhibitionCardStyles>

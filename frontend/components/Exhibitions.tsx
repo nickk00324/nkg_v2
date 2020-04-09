@@ -220,8 +220,8 @@ const CurrentExhibition = (props: CurrentExhibitionProps) => {
                 </Link>
               ) : (
                 <MessageStyles>
-                  sorry nothing currently going on, but im sure there's
-                  something?
+                  nothing currently because of COVID-19, sorry, but check back
+                  in the future i'm sure ill figure something out
                 </MessageStyles>
               )}
             </>

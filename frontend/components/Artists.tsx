@@ -63,12 +63,16 @@ class Artists extends React.Component<ArtistsProps> {
                   <Loading />
                 </KeepHeight>
               );
+            //XD
+            const artists = data.artists.filter(
+              (artist: any) => artist.name === "nick kochornswasdi"
+            );
             return (
               <>
                 <TitleCard text={"artists"} />
                 <ArtistsStyles>
                   <ul>
-                    {data.artists.map((artist: EachArtist, i: number) => (
+                    {artists.map((artist: EachArtist, i: number) => (
                       <li key={i}>
                         <Link
                           href={`/artists/${nameURLFormatter(artist.name)}`}

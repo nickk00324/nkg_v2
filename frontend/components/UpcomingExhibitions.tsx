@@ -93,6 +93,7 @@ const UpcomingExhibitions = (props: UpcomingExhibitionsProps) => {
                     title={e.title}
                     startDate={e.startDate}
                     endDate={e.endDate}
+                    onPastPage={false}
                   />
                 </li>
               ))}
