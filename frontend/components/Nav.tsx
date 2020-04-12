@@ -9,17 +9,17 @@ const NavStyles = styled.div`
 
   a {
     font-weight: 900;
-    color: ${props => props.theme.greenBlue};
+    color: ${(props) => props.theme.greenBlue};
     &:visited {
-      color: ${props => props.theme.greenBlue};
+      color: ${(props) => props.theme.greenBlue};
     }
     &:hover {
-      color: ${props => props.theme.pink};
+      color: ${(props) => props.theme.pink};
     }
   }
 
   p {
-    color: ${props => props.theme.pink};
+    color: ${(props) => props.theme.pink};
   }
 `;
 
@@ -31,7 +31,11 @@ const Nav = () => {
       </Link>
       <p>||</p>
       <Link href='/exhibitions'>
-        <a> exhibitions</a>
+        <a>exhibitions</a>
+      </Link>
+      <p>||</p>
+      <Link href='/residency'>
+        <a>residency</a>
       </Link>
       <p>||</p>
       <Link href='/about'>

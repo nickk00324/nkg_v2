@@ -14,21 +14,22 @@ const TitleCardStyles = styled.div`
   height: 30rem;
   min-width: 30rem;
   max-width: 30rem;
-  border-bottom: ${props => props.theme.border};
-  border-right: ${props => props.theme.border};
+  border-bottom: ${(props) => props.theme.border};
+  border-right: ${(props) => props.theme.border};
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
 
   h2 {
-    color: ${props => props.theme.pink};
+    color: ${(props) => props.theme.pink};
     flex-basis: 100%;
     margin: 0;
   }
 
   h3 {
-    color: ${props => props.theme.pink};
+    color: ${(props) => props.theme.pink};
     font-size: 1.4rem;
   }
 `;
