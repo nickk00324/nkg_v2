@@ -1,3 +1,7 @@
+type AggregateArtImage {
+  count: Int!
+}
+
 type AggregateArtist {
   count: Int!
 }
@@ -6,11 +10,639 @@ type AggregateExhibition {
   count: Int!
 }
 
+type ArtImage implements Node {
+  id: ID!
+  url: String!
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+  artist: Artist!
+  exhibition: Exhibition
+}
+
+"""A connection to a list of items."""
+type ArtImageConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [ArtImageEdge]!
+  aggregate: AggregateArtImage!
+}
+
+input ArtImageCreateInput {
+  id: ID
+  url: String!
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+  artist: ArtistCreateOneWithoutArtworksInput!
+  exhibition: ExhibitionCreateOneWithoutShowImagesInput
+}
+
+input ArtImageCreateManyWithoutArtistInput {
+  create: [ArtImageCreateWithoutArtistInput!]
+  connect: [ArtImageWhereUniqueInput!]
+}
+
+input ArtImageCreateManyWithoutExhibitionInput {
+  create: [ArtImageCreateWithoutExhibitionInput!]
+  connect: [ArtImageWhereUniqueInput!]
+}
+
+input ArtImageCreateWithoutArtistInput {
+  id: ID
+  url: String!
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+  exhibition: ExhibitionCreateOneWithoutShowImagesInput
+}
+
+input ArtImageCreateWithoutExhibitionInput {
+  id: ID
+  url: String!
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+  artist: ArtistCreateOneWithoutArtworksInput!
+}
+
+"""An edge in a connection."""
+type ArtImageEdge {
+  """The item at the end of the edge."""
+  node: ArtImage!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ArtImageOrderByInput {
+  id_ASC
+  id_DESC
+  url_ASC
+  url_DESC
+  title_ASC
+  title_DESC
+  dimensions_ASC
+  dimensions_DESC
+  materials_ASC
+  materials_DESC
+  year_ASC
+  year_DESC
+  credit_ASC
+  credit_DESC
+}
+
+type ArtImagePreviousValues {
+  id: ID!
+  url: String!
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+}
+
+input ArtImageScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ArtImageScalarWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [ArtImageScalarWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ArtImageScalarWhereInput!]
+  id: ID
+  """All values that are not equal to given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID!]
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+  """All values less than the given value."""
+  id_lt: ID
+  """All values less than or equal the given value."""
+  id_lte: ID
+  """All values greater than the given value."""
+  id_gt: ID
+  """All values greater than or equal the given value."""
+  id_gte: ID
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  url: String
+  """All values that are not equal to given value."""
+  url_not: String
+  """All values that are contained in given list."""
+  url_in: [String!]
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+  """All values less than the given value."""
+  url_lt: String
+  """All values less than or equal the given value."""
+  url_lte: String
+  """All values greater than the given value."""
+  url_gt: String
+  """All values greater than or equal the given value."""
+  url_gte: String
+  """All values containing the given string."""
+  url_contains: String
+  """All values not containing the given string."""
+  url_not_contains: String
+  """All values starting with the given string."""
+  url_starts_with: String
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+  """All values ending with the given string."""
+  url_ends_with: String
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  title: String
+  """All values that are not equal to given value."""
+  title_not: String
+  """All values that are contained in given list."""
+  title_in: [String!]
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+  """All values less than the given value."""
+  title_lt: String
+  """All values less than or equal the given value."""
+  title_lte: String
+  """All values greater than the given value."""
+  title_gt: String
+  """All values greater than or equal the given value."""
+  title_gte: String
+  """All values containing the given string."""
+  title_contains: String
+  """All values not containing the given string."""
+  title_not_contains: String
+  """All values starting with the given string."""
+  title_starts_with: String
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+  """All values ending with the given string."""
+  title_ends_with: String
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  dimensions: String
+  """All values that are not equal to given value."""
+  dimensions_not: String
+  """All values that are contained in given list."""
+  dimensions_in: [String!]
+  """All values that are not contained in given list."""
+  dimensions_not_in: [String!]
+  """All values less than the given value."""
+  dimensions_lt: String
+  """All values less than or equal the given value."""
+  dimensions_lte: String
+  """All values greater than the given value."""
+  dimensions_gt: String
+  """All values greater than or equal the given value."""
+  dimensions_gte: String
+  """All values containing the given string."""
+  dimensions_contains: String
+  """All values not containing the given string."""
+  dimensions_not_contains: String
+  """All values starting with the given string."""
+  dimensions_starts_with: String
+  """All values not starting with the given string."""
+  dimensions_not_starts_with: String
+  """All values ending with the given string."""
+  dimensions_ends_with: String
+  """All values not ending with the given string."""
+  dimensions_not_ends_with: String
+  materials: String
+  """All values that are not equal to given value."""
+  materials_not: String
+  """All values that are contained in given list."""
+  materials_in: [String!]
+  """All values that are not contained in given list."""
+  materials_not_in: [String!]
+  """All values less than the given value."""
+  materials_lt: String
+  """All values less than or equal the given value."""
+  materials_lte: String
+  """All values greater than the given value."""
+  materials_gt: String
+  """All values greater than or equal the given value."""
+  materials_gte: String
+  """All values containing the given string."""
+  materials_contains: String
+  """All values not containing the given string."""
+  materials_not_contains: String
+  """All values starting with the given string."""
+  materials_starts_with: String
+  """All values not starting with the given string."""
+  materials_not_starts_with: String
+  """All values ending with the given string."""
+  materials_ends_with: String
+  """All values not ending with the given string."""
+  materials_not_ends_with: String
+  year: String
+  """All values that are not equal to given value."""
+  year_not: String
+  """All values that are contained in given list."""
+  year_in: [String!]
+  """All values that are not contained in given list."""
+  year_not_in: [String!]
+  """All values less than the given value."""
+  year_lt: String
+  """All values less than or equal the given value."""
+  year_lte: String
+  """All values greater than the given value."""
+  year_gt: String
+  """All values greater than or equal the given value."""
+  year_gte: String
+  """All values containing the given string."""
+  year_contains: String
+  """All values not containing the given string."""
+  year_not_contains: String
+  """All values starting with the given string."""
+  year_starts_with: String
+  """All values not starting with the given string."""
+  year_not_starts_with: String
+  """All values ending with the given string."""
+  year_ends_with: String
+  """All values not ending with the given string."""
+  year_not_ends_with: String
+  credit: String
+  """All values that are not equal to given value."""
+  credit_not: String
+  """All values that are contained in given list."""
+  credit_in: [String!]
+  """All values that are not contained in given list."""
+  credit_not_in: [String!]
+  """All values less than the given value."""
+  credit_lt: String
+  """All values less than or equal the given value."""
+  credit_lte: String
+  """All values greater than the given value."""
+  credit_gt: String
+  """All values greater than or equal the given value."""
+  credit_gte: String
+  """All values containing the given string."""
+  credit_contains: String
+  """All values not containing the given string."""
+  credit_not_contains: String
+  """All values starting with the given string."""
+  credit_starts_with: String
+  """All values not starting with the given string."""
+  credit_not_starts_with: String
+  """All values ending with the given string."""
+  credit_ends_with: String
+  """All values not ending with the given string."""
+  credit_not_ends_with: String
+}
+
+type ArtImageSubscriptionPayload {
+  mutation: MutationType!
+  node: ArtImage
+  updatedFields: [String!]
+  previousValues: ArtImagePreviousValues
+}
+
+input ArtImageSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ArtImageSubscriptionWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [ArtImageSubscriptionWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ArtImageSubscriptionWhereInput!]
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+  """The subscription event gets only dispatched when one of the updated fields names is included in this list"""
+  updatedFields_contains: String
+  """The subscription event gets only dispatched when all of the field names included in this list have been updated"""
+  updatedFields_contains_every: [String!]
+  """The subscription event gets only dispatched when some of the field names included in this list have been updated"""
+  updatedFields_contains_some: [String!]
+  node: ArtImageWhereInput
+}
+
+input ArtImageUpdateInput {
+  url: String
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+  artist: ArtistUpdateOneRequiredWithoutArtworksInput
+  exhibition: ExhibitionUpdateOneWithoutShowImagesInput
+}
+
+input ArtImageUpdateManyDataInput {
+  url: String
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+}
+
+input ArtImageUpdateManyMutationInput {
+  url: String
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+}
+
+input ArtImageUpdateManyWithoutArtistInput {
+  create: [ArtImageCreateWithoutArtistInput!]
+  connect: [ArtImageWhereUniqueInput!]
+  set: [ArtImageWhereUniqueInput!]
+  disconnect: [ArtImageWhereUniqueInput!]
+  delete: [ArtImageWhereUniqueInput!]
+  update: [ArtImageUpdateWithWhereUniqueWithoutArtistInput!]
+  updateMany: [ArtImageUpdateManyWithWhereNestedInput!]
+  deleteMany: [ArtImageScalarWhereInput!]
+  upsert: [ArtImageUpsertWithWhereUniqueWithoutArtistInput!]
+}
+
+input ArtImageUpdateManyWithoutExhibitionInput {
+  create: [ArtImageCreateWithoutExhibitionInput!]
+  connect: [ArtImageWhereUniqueInput!]
+  set: [ArtImageWhereUniqueInput!]
+  disconnect: [ArtImageWhereUniqueInput!]
+  delete: [ArtImageWhereUniqueInput!]
+  update: [ArtImageUpdateWithWhereUniqueWithoutExhibitionInput!]
+  updateMany: [ArtImageUpdateManyWithWhereNestedInput!]
+  deleteMany: [ArtImageScalarWhereInput!]
+  upsert: [ArtImageUpsertWithWhereUniqueWithoutExhibitionInput!]
+}
+
+input ArtImageUpdateManyWithWhereNestedInput {
+  where: ArtImageScalarWhereInput!
+  data: ArtImageUpdateManyDataInput!
+}
+
+input ArtImageUpdateWithoutArtistDataInput {
+  url: String
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+  exhibition: ExhibitionUpdateOneWithoutShowImagesInput
+}
+
+input ArtImageUpdateWithoutExhibitionDataInput {
+  url: String
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+  artist: ArtistUpdateOneRequiredWithoutArtworksInput
+}
+
+input ArtImageUpdateWithWhereUniqueWithoutArtistInput {
+  where: ArtImageWhereUniqueInput!
+  data: ArtImageUpdateWithoutArtistDataInput!
+}
+
+input ArtImageUpdateWithWhereUniqueWithoutExhibitionInput {
+  where: ArtImageWhereUniqueInput!
+  data: ArtImageUpdateWithoutExhibitionDataInput!
+}
+
+input ArtImageUpsertWithWhereUniqueWithoutArtistInput {
+  where: ArtImageWhereUniqueInput!
+  update: ArtImageUpdateWithoutArtistDataInput!
+  create: ArtImageCreateWithoutArtistInput!
+}
+
+input ArtImageUpsertWithWhereUniqueWithoutExhibitionInput {
+  where: ArtImageWhereUniqueInput!
+  update: ArtImageUpdateWithoutExhibitionDataInput!
+  create: ArtImageCreateWithoutExhibitionInput!
+}
+
+input ArtImageWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ArtImageWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [ArtImageWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ArtImageWhereInput!]
+  id: ID
+  """All values that are not equal to given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID!]
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+  """All values less than the given value."""
+  id_lt: ID
+  """All values less than or equal the given value."""
+  id_lte: ID
+  """All values greater than the given value."""
+  id_gt: ID
+  """All values greater than or equal the given value."""
+  id_gte: ID
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  url: String
+  """All values that are not equal to given value."""
+  url_not: String
+  """All values that are contained in given list."""
+  url_in: [String!]
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+  """All values less than the given value."""
+  url_lt: String
+  """All values less than or equal the given value."""
+  url_lte: String
+  """All values greater than the given value."""
+  url_gt: String
+  """All values greater than or equal the given value."""
+  url_gte: String
+  """All values containing the given string."""
+  url_contains: String
+  """All values not containing the given string."""
+  url_not_contains: String
+  """All values starting with the given string."""
+  url_starts_with: String
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+  """All values ending with the given string."""
+  url_ends_with: String
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  title: String
+  """All values that are not equal to given value."""
+  title_not: String
+  """All values that are contained in given list."""
+  title_in: [String!]
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+  """All values less than the given value."""
+  title_lt: String
+  """All values less than or equal the given value."""
+  title_lte: String
+  """All values greater than the given value."""
+  title_gt: String
+  """All values greater than or equal the given value."""
+  title_gte: String
+  """All values containing the given string."""
+  title_contains: String
+  """All values not containing the given string."""
+  title_not_contains: String
+  """All values starting with the given string."""
+  title_starts_with: String
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+  """All values ending with the given string."""
+  title_ends_with: String
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  dimensions: String
+  """All values that are not equal to given value."""
+  dimensions_not: String
+  """All values that are contained in given list."""
+  dimensions_in: [String!]
+  """All values that are not contained in given list."""
+  dimensions_not_in: [String!]
+  """All values less than the given value."""
+  dimensions_lt: String
+  """All values less than or equal the given value."""
+  dimensions_lte: String
+  """All values greater than the given value."""
+  dimensions_gt: String
+  """All values greater than or equal the given value."""
+  dimensions_gte: String
+  """All values containing the given string."""
+  dimensions_contains: String
+  """All values not containing the given string."""
+  dimensions_not_contains: String
+  """All values starting with the given string."""
+  dimensions_starts_with: String
+  """All values not starting with the given string."""
+  dimensions_not_starts_with: String
+  """All values ending with the given string."""
+  dimensions_ends_with: String
+  """All values not ending with the given string."""
+  dimensions_not_ends_with: String
+  materials: String
+  """All values that are not equal to given value."""
+  materials_not: String
+  """All values that are contained in given list."""
+  materials_in: [String!]
+  """All values that are not contained in given list."""
+  materials_not_in: [String!]
+  """All values less than the given value."""
+  materials_lt: String
+  """All values less than or equal the given value."""
+  materials_lte: String
+  """All values greater than the given value."""
+  materials_gt: String
+  """All values greater than or equal the given value."""
+  materials_gte: String
+  """All values containing the given string."""
+  materials_contains: String
+  """All values not containing the given string."""
+  materials_not_contains: String
+  """All values starting with the given string."""
+  materials_starts_with: String
+  """All values not starting with the given string."""
+  materials_not_starts_with: String
+  """All values ending with the given string."""
+  materials_ends_with: String
+  """All values not ending with the given string."""
+  materials_not_ends_with: String
+  year: String
+  """All values that are not equal to given value."""
+  year_not: String
+  """All values that are contained in given list."""
+  year_in: [String!]
+  """All values that are not contained in given list."""
+  year_not_in: [String!]
+  """All values less than the given value."""
+  year_lt: String
+  """All values less than or equal the given value."""
+  year_lte: String
+  """All values greater than the given value."""
+  year_gt: String
+  """All values greater than or equal the given value."""
+  year_gte: String
+  """All values containing the given string."""
+  year_contains: String
+  """All values not containing the given string."""
+  year_not_contains: String
+  """All values starting with the given string."""
+  year_starts_with: String
+  """All values not starting with the given string."""
+  year_not_starts_with: String
+  """All values ending with the given string."""
+  year_ends_with: String
+  """All values not ending with the given string."""
+  year_not_ends_with: String
+  credit: String
+  """All values that are not equal to given value."""
+  credit_not: String
+  """All values that are contained in given list."""
+  credit_in: [String!]
+  """All values that are not contained in given list."""
+  credit_not_in: [String!]
+  """All values less than the given value."""
+  credit_lt: String
+  """All values less than or equal the given value."""
+  credit_lte: String
+  """All values greater than the given value."""
+  credit_gt: String
+  """All values greater than or equal the given value."""
+  credit_gte: String
+  """All values containing the given string."""
+  credit_contains: String
+  """All values not containing the given string."""
+  credit_not_contains: String
+  """All values starting with the given string."""
+  credit_starts_with: String
+  """All values not starting with the given string."""
+  credit_not_starts_with: String
+  """All values ending with the given string."""
+  credit_ends_with: String
+  """All values not ending with the given string."""
+  credit_not_ends_with: String
+  artist: ArtistWhereInput
+  exhibition: ExhibitionWhereInput
+}
+
+input ArtImageWhereUniqueInput {
+  id: ID
+}
+
 type Artist implements Node {
   id: ID!
   name: String!
   exhibitions(where: ExhibitionWhereInput, orderBy: ExhibitionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Exhibition!]
   bio: [String!]!
+  artworks(where: ArtImageWhereInput, orderBy: ArtImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ArtImage!]
 }
 
 """A connection to a list of items."""
@@ -31,6 +663,12 @@ input ArtistCreateInput {
   name: String!
   bio: ArtistCreatebioInput
   exhibitions: ExhibitionCreateManyWithoutArtistInput
+  artworks: ArtImageCreateManyWithoutArtistInput
+}
+
+input ArtistCreateOneWithoutArtworksInput {
+  create: ArtistCreateWithoutArtworksInput
+  connect: ArtistWhereUniqueInput
 }
 
 input ArtistCreateOneWithoutExhibitionsInput {
@@ -38,10 +676,18 @@ input ArtistCreateOneWithoutExhibitionsInput {
   connect: ArtistWhereUniqueInput
 }
 
+input ArtistCreateWithoutArtworksInput {
+  id: ID
+  name: String!
+  bio: ArtistCreatebioInput
+  exhibitions: ExhibitionCreateManyWithoutArtistInput
+}
+
 input ArtistCreateWithoutExhibitionsInput {
   id: ID
   name: String!
   bio: ArtistCreatebioInput
+  artworks: ArtImageCreateManyWithoutArtistInput
 }
 
 """An edge in a connection."""
@@ -98,11 +744,19 @@ input ArtistUpdateInput {
   name: String
   bio: ArtistUpdatebioInput
   exhibitions: ExhibitionUpdateManyWithoutArtistInput
+  artworks: ArtImageUpdateManyWithoutArtistInput
 }
 
 input ArtistUpdateManyMutationInput {
   name: String
   bio: ArtistUpdatebioInput
+}
+
+input ArtistUpdateOneRequiredWithoutArtworksInput {
+  create: ArtistCreateWithoutArtworksInput
+  connect: ArtistWhereUniqueInput
+  update: ArtistUpdateWithoutArtworksDataInput
+  upsert: ArtistUpsertWithoutArtworksInput
 }
 
 input ArtistUpdateOneWithoutExhibitionsInput {
@@ -114,9 +768,21 @@ input ArtistUpdateOneWithoutExhibitionsInput {
   upsert: ArtistUpsertWithoutExhibitionsInput
 }
 
+input ArtistUpdateWithoutArtworksDataInput {
+  name: String
+  bio: ArtistUpdatebioInput
+  exhibitions: ExhibitionUpdateManyWithoutArtistInput
+}
+
 input ArtistUpdateWithoutExhibitionsDataInput {
   name: String
   bio: ArtistUpdatebioInput
+  artworks: ArtImageUpdateManyWithoutArtistInput
+}
+
+input ArtistUpsertWithoutArtworksInput {
+  update: ArtistUpdateWithoutArtworksDataInput!
+  create: ArtistCreateWithoutArtworksInput!
 }
 
 input ArtistUpsertWithoutExhibitionsInput {
@@ -188,6 +854,9 @@ input ArtistWhereInput {
   exhibitions_every: ExhibitionWhereInput
   exhibitions_some: ExhibitionWhereInput
   exhibitions_none: ExhibitionWhereInput
+  artworks_every: ArtImageWhereInput
+  artworks_some: ArtImageWhereInput
+  artworks_none: ArtImageWhereInput
 }
 
 input ArtistWhereUniqueInput {
@@ -206,7 +875,7 @@ type Exhibition implements Node {
   title: String
   artist: Artist
   promoImage: String
-  showImages: [String!]!
+  showImages(where: ArtImageWhereInput, orderBy: ArtImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ArtImage!]
   thumbnail: String
   startDate: DateTime
   endDate: DateTime
@@ -231,9 +900,9 @@ input ExhibitionCreateInput {
   startDate: DateTime
   endDate: DateTime
   url: String!
-  showImages: ExhibitionCreateshowImagesInput
   pressRelease: ExhibitionCreatepressReleaseInput
   artist: ArtistCreateOneWithoutExhibitionsInput
+  showImages: ArtImageCreateManyWithoutExhibitionInput
 }
 
 input ExhibitionCreateManyWithoutArtistInput {
@@ -241,11 +910,12 @@ input ExhibitionCreateManyWithoutArtistInput {
   connect: [ExhibitionWhereUniqueInput!]
 }
 
-input ExhibitionCreatepressReleaseInput {
-  set: [String!]
+input ExhibitionCreateOneWithoutShowImagesInput {
+  create: ExhibitionCreateWithoutShowImagesInput
+  connect: ExhibitionWhereUniqueInput
 }
 
-input ExhibitionCreateshowImagesInput {
+input ExhibitionCreatepressReleaseInput {
   set: [String!]
 }
 
@@ -257,8 +927,20 @@ input ExhibitionCreateWithoutArtistInput {
   startDate: DateTime
   endDate: DateTime
   url: String!
-  showImages: ExhibitionCreateshowImagesInput
   pressRelease: ExhibitionCreatepressReleaseInput
+  showImages: ArtImageCreateManyWithoutExhibitionInput
+}
+
+input ExhibitionCreateWithoutShowImagesInput {
+  id: ID
+  title: String
+  promoImage: String
+  thumbnail: String
+  startDate: DateTime
+  endDate: DateTime
+  url: String!
+  pressRelease: ExhibitionCreatepressReleaseInput
+  artist: ArtistCreateOneWithoutExhibitionsInput
 }
 
 """An edge in a connection."""
@@ -290,7 +972,6 @@ type ExhibitionPreviousValues {
   id: ID!
   title: String
   promoImage: String
-  showImages: [String!]!
   thumbnail: String
   startDate: DateTime
   endDate: DateTime
@@ -504,9 +1185,9 @@ input ExhibitionUpdateInput {
   startDate: DateTime
   endDate: DateTime
   url: String
-  showImages: ExhibitionUpdateshowImagesInput
   pressRelease: ExhibitionUpdatepressReleaseInput
   artist: ArtistUpdateOneWithoutExhibitionsInput
+  showImages: ArtImageUpdateManyWithoutExhibitionInput
 }
 
 input ExhibitionUpdateManyDataInput {
@@ -516,7 +1197,6 @@ input ExhibitionUpdateManyDataInput {
   startDate: DateTime
   endDate: DateTime
   url: String
-  showImages: ExhibitionUpdateshowImagesInput
   pressRelease: ExhibitionUpdatepressReleaseInput
 }
 
@@ -527,7 +1207,6 @@ input ExhibitionUpdateManyMutationInput {
   startDate: DateTime
   endDate: DateTime
   url: String
-  showImages: ExhibitionUpdateshowImagesInput
   pressRelease: ExhibitionUpdatepressReleaseInput
 }
 
@@ -548,11 +1227,16 @@ input ExhibitionUpdateManyWithWhereNestedInput {
   data: ExhibitionUpdateManyDataInput!
 }
 
-input ExhibitionUpdatepressReleaseInput {
-  set: [String!]
+input ExhibitionUpdateOneWithoutShowImagesInput {
+  create: ExhibitionCreateWithoutShowImagesInput
+  connect: ExhibitionWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: ExhibitionUpdateWithoutShowImagesDataInput
+  upsert: ExhibitionUpsertWithoutShowImagesInput
 }
 
-input ExhibitionUpdateshowImagesInput {
+input ExhibitionUpdatepressReleaseInput {
   set: [String!]
 }
 
@@ -563,13 +1247,29 @@ input ExhibitionUpdateWithoutArtistDataInput {
   startDate: DateTime
   endDate: DateTime
   url: String
-  showImages: ExhibitionUpdateshowImagesInput
   pressRelease: ExhibitionUpdatepressReleaseInput
+  showImages: ArtImageUpdateManyWithoutExhibitionInput
+}
+
+input ExhibitionUpdateWithoutShowImagesDataInput {
+  title: String
+  promoImage: String
+  thumbnail: String
+  startDate: DateTime
+  endDate: DateTime
+  url: String
+  pressRelease: ExhibitionUpdatepressReleaseInput
+  artist: ArtistUpdateOneWithoutExhibitionsInput
 }
 
 input ExhibitionUpdateWithWhereUniqueWithoutArtistInput {
   where: ExhibitionWhereUniqueInput!
   data: ExhibitionUpdateWithoutArtistDataInput!
+}
+
+input ExhibitionUpsertWithoutShowImagesInput {
+  update: ExhibitionUpdateWithoutShowImagesDataInput!
+  create: ExhibitionCreateWithoutShowImagesInput!
 }
 
 input ExhibitionUpsertWithWhereUniqueWithoutArtistInput {
@@ -751,6 +1451,9 @@ input ExhibitionWhereInput {
   """All values not ending with the given string."""
   url_not_ends_with: String
   artist: ArtistWhereInput
+  showImages_every: ArtImageWhereInput
+  showImages_some: ArtImageWhereInput
+  showImages_none: ArtImageWhereInput
 }
 
 input ExhibitionWhereUniqueInput {
@@ -767,16 +1470,22 @@ scalar Long
 type Mutation {
   createArtist(data: ArtistCreateInput!): Artist!
   createExhibition(data: ExhibitionCreateInput!): Exhibition!
+  createArtImage(data: ArtImageCreateInput!): ArtImage!
   updateArtist(data: ArtistUpdateInput!, where: ArtistWhereUniqueInput!): Artist
   updateExhibition(data: ExhibitionUpdateInput!, where: ExhibitionWhereUniqueInput!): Exhibition
+  updateArtImage(data: ArtImageUpdateInput!, where: ArtImageWhereUniqueInput!): ArtImage
   deleteArtist(where: ArtistWhereUniqueInput!): Artist
   deleteExhibition(where: ExhibitionWhereUniqueInput!): Exhibition
+  deleteArtImage(where: ArtImageWhereUniqueInput!): ArtImage
   upsertArtist(where: ArtistWhereUniqueInput!, create: ArtistCreateInput!, update: ArtistUpdateInput!): Artist!
   upsertExhibition(where: ExhibitionWhereUniqueInput!, create: ExhibitionCreateInput!, update: ExhibitionUpdateInput!): Exhibition!
+  upsertArtImage(where: ArtImageWhereUniqueInput!, create: ArtImageCreateInput!, update: ArtImageUpdateInput!): ArtImage!
   updateManyArtists(data: ArtistUpdateManyMutationInput!, where: ArtistWhereInput): BatchPayload!
   updateManyExhibitions(data: ExhibitionUpdateManyMutationInput!, where: ExhibitionWhereInput): BatchPayload!
+  updateManyArtImages(data: ArtImageUpdateManyMutationInput!, where: ArtImageWhereInput): BatchPayload!
   deleteManyArtists(where: ArtistWhereInput): BatchPayload!
   deleteManyExhibitions(where: ExhibitionWhereInput): BatchPayload!
+  deleteManyArtImages(where: ArtImageWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -806,10 +1515,13 @@ type PageInfo {
 type Query {
   artists(where: ArtistWhereInput, orderBy: ArtistOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Artist]!
   exhibitions(where: ExhibitionWhereInput, orderBy: ExhibitionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Exhibition]!
+  artImages(where: ArtImageWhereInput, orderBy: ArtImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ArtImage]!
   artist(where: ArtistWhereUniqueInput!): Artist
   exhibition(where: ExhibitionWhereUniqueInput!): Exhibition
+  artImage(where: ArtImageWhereUniqueInput!): ArtImage
   artistsConnection(where: ArtistWhereInput, orderBy: ArtistOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ArtistConnection!
   exhibitionsConnection(where: ExhibitionWhereInput, orderBy: ExhibitionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExhibitionConnection!
+  artImagesConnection(where: ArtImageWhereInput, orderBy: ArtImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ArtImageConnection!
   """Fetches an object given its ID"""
   node(
     """The ID of an object"""
@@ -820,4 +1532,5 @@ type Query {
 type Subscription {
   artist(where: ArtistSubscriptionWhereInput): ArtistSubscriptionPayload
   exhibition(where: ExhibitionSubscriptionWhereInput): ExhibitionSubscriptionPayload
+  artImage(where: ArtImageSubscriptionWhereInput): ArtImageSubscriptionPayload
 }

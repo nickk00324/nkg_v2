@@ -3,6 +3,7 @@ type Artist {
   name: String!
   exhibitions: [Exhibition]
   bio: [String] @scalarList(strategy: RELATION)
+  artworks: [ArtImage]
 }
 
 type Exhibition {
@@ -10,10 +11,22 @@ type Exhibition {
   title: String
   artist: Artist
   promoImage: String
-  showImages: [String] @scalarList(strategy: RELATION)
+  showImages: [ArtImage] @scalarList(strategy: RELATION)
   thumbnail: String
   startDate: DateTime
   endDate: DateTime
   pressRelease: [String] @scalarList(strategy: RELATION)
   url: String! @unique
+}
+
+type ArtImage {
+  id: ID! @id
+  url: String!
+  title: String
+  dimensions: String
+  materials: String
+  year: String
+  credit: String
+  artist: Artist!
+  exhibition: Exhibition
 }
