@@ -9,6 +9,7 @@ import NotFound from "./NotFound";
 import Loading from "./Loading";
 import ImageViewer from "./ImageViewer";
 import KeepHeight from "./styles/KeepHeight";
+import { ArtImage } from "../lib/types";
 
 const SINGLE_ARTIST_QUERY = gql`
   query SINGLE_ARTIST_QUERY($name: String!) {
@@ -21,7 +22,14 @@ const SINGLE_ARTIST_QUERY = gql`
         thumbnail
         startDate
         endDate
-        showImages
+        showImages {
+          title
+          dimensions
+          year
+          materials
+          credit
+          url
+        }
       }
     }
   }
@@ -34,7 +42,7 @@ type ArtistProps = {
 const ArtistStyles = styled.div`
   margin: 0 auto;
   .image-viewer {
-    margin-bottom: ${props => props.theme.marginFromFooter};
+    margin-bottom: ${(props) => props.theme.marginFromFooter};
   }
 
   .container {
@@ -67,10 +75,13 @@ class Artist extends React.Component<ArtistProps> {
               data.artists[0].name === "nick kochornswasdi"
                 ? data.artists[0]
                 : null;
-            let images: string[] = [];
+            let images: ArtImage[] = [];
             if (artist) {
               artist.exhibitions.forEach((e: any) => {
                 images = images.concat(e.showImages);
+              });
+              images = images.filter((image: ArtImage) => {
+                return image.title;
               });
             }
             return (
