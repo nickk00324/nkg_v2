@@ -2,9 +2,10 @@ import * as React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { ArtImage } from "../lib/types";
 
 type ImageViewerProps = {
-  images: string[];
+  images: ArtImage[];
 };
 
 type ImageViewerState = {
@@ -82,11 +83,24 @@ const ImageViewerStyles = styled.div`
     @media only screen and (max-width: 760px) {
       font-size: 3rem;
     }
-    color: ${props => props.theme.greenBlue};
+    color: ${(props) => props.theme.greenBlue};
     cursor: pointer;
     &:hover {
-      color: ${props => props.theme.pink};
+      color: ${(props) => props.theme.pink};
     }
+  }
+
+  .image-caption {
+    font-size: 1.2rem;
+    padding-top: 2rem;
+    text-align: center;
+    p {
+      margin: 0;
+    }
+  }
+
+  .italic {
+    font-style: italic;
   }
 `;
 
@@ -97,7 +111,7 @@ class ImageViewer extends React.Component<ImageViewerProps, ImageViewerState> {
   constructor(props: ImageViewerProps) {
     super(props);
     this.state = {
-      current: 0
+      current: 0,
     };
   }
 
@@ -128,17 +142,44 @@ class ImageViewer extends React.Component<ImageViewerProps, ImageViewerState> {
 
   render() {
     const { images } = this.props;
+    const { current } = this.state;
     return (
       <ImageViewerStyles>
-        <div className='container'>
-          <div className='icon' onClick={() => this.handleClick(event, "down")}>
-            <FontAwesomeIcon icon={faCaretLeft} />
-          </div>
-          <img src={images[this.state.current]} />
-          <div className='icon' onClick={() => this.handleClick(event, "up")}>
-            <FontAwesomeIcon icon={faCaretRight} />
-          </div>
-        </div>
+        {images.length !== 0 && (
+          <>
+            <div className='container'>
+              <div
+                className='icon'
+                onClick={() => this.handleClick(event, "down")}
+              >
+                <FontAwesomeIcon icon={faCaretLeft} />
+              </div>
+              <img src={images[this.state.current].url} />
+              <div
+                className='icon'
+                onClick={() => this.handleClick(event, "up")}
+              >
+                <FontAwesomeIcon icon={faCaretRight} />
+              </div>
+            </div>
+            <div className='image-caption'>
+              {images[current].title ? (
+                <p>
+                  <span className='italic'>{images[current].title}</span>
+                  {images[current].year && (
+                    <span>, {images[current].year}</span>
+                  )}
+                </p>
+              ) : (
+                <p>Installation View</p>
+              )}
+              {images[current].materials && <p>{images[current].materials}</p>}
+              {images[current].credit && (
+                <p>Photo By: {images[current].credit}</p>
+              )}
+            </div>
+          </>
+        )}
       </ImageViewerStyles>
     );
   }

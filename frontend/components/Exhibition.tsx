@@ -23,7 +23,14 @@ const SINGLE_EXHIBITION_QUERY = gql`
       endDate
       pressRelease
       promoImage
-      showImages
+      showImages {
+        title
+        dimensions
+        year
+        materials
+        credit
+        url
+      }
       thumbnail
       url
     }
@@ -39,7 +46,7 @@ const ExhibitionStyles = styled.div`
   flex: 1;
   justify-content: center;
   .image-viewer {
-    margin-bottom: ${props => props.theme.marginFromFooter};
+    margin-bottom: ${(props) => props.theme.marginFromFooter};
   }
 `;
 
@@ -61,7 +68,6 @@ const Exhibition = (props: ExhibitionProps) => {
               </KeepHeight>
             );
           const ex = data.exhibition;
-          console.log(ex.showImages.length);
           return (
             <>
               {!ex ||
@@ -109,18 +115,18 @@ const Exhibition = (props: ExhibitionProps) => {
 const ExhibitionNavStyles = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-bottom: ${props => props.theme.border};
+  border-bottom: ${(props) => props.theme.border};
   width: 30rem;
   margin-bottom: 2rem;
   justify-self: flex-start;
   a {
     padding: 1rem;
     margin: 0;
-    border-right: ${props => props.theme.border};
+    border-right: ${(props) => props.theme.border};
     text-align: center;
   }
   .isSelected {
-    color: ${props => props.theme.pink};
+    color: ${(props) => props.theme.pink};
   }
 `;
 
@@ -174,7 +180,7 @@ const PressReleaseStyles = styled.div`
 
   .text {
     margin-top: 5rem;
-    margin-bottom: ${props => props.theme.marginFromFooter};
+    margin-bottom: ${(props) => props.theme.marginFromFooter};
     p {
       padding: 0 7rem;
 
