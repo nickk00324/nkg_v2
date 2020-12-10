@@ -7,8 +7,8 @@ const FooterStyles = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  border-top: ${props => props.theme.border};
-  border-left: ${props => props.theme.border};
+  border-top: ${(props) => props.theme.border};
+  border-left: ${(props) => props.theme.border};
   padding: 2rem;
   p {
     margin: 0;
@@ -25,13 +25,22 @@ const FooterStyles = styled.div`
       padding: 0 0.5rem;
     }
   }
+
+  .strikeThrough {
+    text-decoration: line-through;
+  }
 `;
 
 const Footer = () => (
   <FooterStyles>
-    <p>1206 Maple Ave. Ste. 534, Los Angeles, CA 90015</p>
+    <p>
+      <span className='strikeThrough'>
+        1206 Maple Ave. Ste. 534, Los Angeles, CA 90015
+      </span>{" "}
+      ¯\_(ツ)_/¯
+    </p>
     <p>213.437.3951</p>
-    <p>gallery open by appointment only</p>
+    <p className='strikeThrough'>gallery open by appointment only</p>
     <a href='mailto:info@nickkochornswasdigallery.com'>
       info@nickkochornswasdigallery.com
     </a>

@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     html {
         box-sizing: border-box;
         font-size: 10px;
-        margin: 0 2rem;
+        padding: 0 2rem;
         -webkit-tap-highlight-color:transparent;
 
         @media only screen and (max-width: 500px) {

@@ -1,6 +1,7 @@
 import * as React from "react";
 import Head from "next/head";
-import Corona from "./Corona";
+import GoogleLogin from "react-google-login";
+import Bye from "./Bye";
 import OnView from "./OnView";
 
 class Home extends React.Component {
@@ -26,7 +27,7 @@ class Home extends React.Component {
           }`}
           </script>
         </Head>
-        <Corona />;
+        <Bye />
       </>
     );
   }

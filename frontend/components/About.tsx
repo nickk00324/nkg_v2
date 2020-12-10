@@ -5,7 +5,7 @@ import TitleCard from "./TitleCard";
 const AboutStyles = styled.div`
   max-width: 90rem;
   margin: 20rem auto 40rem auto;
-  border-top: ${props => props.theme.border};
+  border-top: ${(props) => props.theme.border};
 
   @media only screen and (max-width: 1265px) {
     margin: 5rem auto 40rem auto;
@@ -14,7 +14,7 @@ const AboutStyles = styled.div`
   .info {
     margin-top: 4rem;
     padding-bottom: 3rem;
-    border-bottom: ${props => props.theme.border};
+    border-bottom: ${(props) => props.theme.border};
 
     p {
       line-height: 2rem;
@@ -37,7 +37,6 @@ const About = () => {
           and challenged.
         </p>
         <div className='info'>
-          <p>1206 Maple Ave. Ste. 534. Los Angeles, CA 90015</p>
           <p>213.437.3951</p>
           <p>gallery open by appointment only</p>
           <a href='mailto:info@nickkochornswasdigallery.com'>
